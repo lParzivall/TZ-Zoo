@@ -37,6 +37,27 @@ public class Carnivore extends AnimalSpecies {
      */
     @Override
     public void feeding() {
+        makeAllCarnivoresCalm();
+    }
+
+    /**
+     * Method for "species feeding" event
+     * Changes state of species to CALM
+     * Changes zoo info about state of a carnivore type
+     * Prints species info
+     */
+    @Override
+    public void drinking() {
+        makeAllCarnivoresCalm();
+    }
+
+    /**
+     * Method for feeding or drinking event
+     * Changes state of species to CALM
+     * Changes zoo info about state of a carnivore type
+     * Prints species info
+     */
+    private void makeAllCarnivoresCalm() {
         currentState = AnimalState.CALM;
         Zoo.setAllCarnivoreState(AnimalState.CALM);
         printDescription();
@@ -94,6 +115,19 @@ public class Carnivore extends AnimalSpecies {
      */
     @Override
     public void thunder() {
+        setCurrentState(AnimalState.MAKE_NOISE);
+        Zoo.setAllCarnivoreState(AnimalState.MAKE_NOISE);
+        printDescription();
+    }
+
+    /**
+     * Method for "thunder strike" event
+     * Changes state of species to MAKE_NOISE
+     * Changes zoo info about state of carnivore type to MAKE_NOISE
+     * Prints species info
+     */
+    @Override
+    public void rain() {
         setCurrentState(AnimalState.MAKE_NOISE);
         Zoo.setAllCarnivoreState(AnimalState.MAKE_NOISE);
         printDescription();

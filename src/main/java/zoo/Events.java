@@ -15,6 +15,11 @@ public enum Events {
     FEEDING,
 
     /**
+     *  describes a drinking of animals
+     */
+    DRINKING,
+
+    /**
      *  describes a beginning of night time
      */
     NIGHT,
@@ -28,6 +33,11 @@ public enum Events {
      *  describes a thunder strike
      */
     THUNDER,
+
+    /**
+     *  describes a rain
+     */
+    RAIN,
 
     /**
      *  describes an event, when animals should update their states,

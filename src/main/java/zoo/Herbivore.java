@@ -1,4 +1,5 @@
 package zoo;
+
 /**
  * Class for describing a species of herbivore animal
  */
@@ -35,6 +36,27 @@ public class Herbivore extends AnimalSpecies {
      */
     @Override
     public void feeding() {
+        makeAllHerbivoresCalm();
+    }
+
+    /**
+     * * Method for "species drinking" event
+     * Changes state of species to CALM
+     * Changes zoo info about state of a herbivore type
+     * Prints species info
+     */
+    @Override
+    public void drinking() {
+        makeAllHerbivoresCalm();
+    }
+
+    /**
+     * Method for feeding or drinking event
+     * Prints species info
+     * Changes state of species to CALM
+     * Changes zoo info about state of a herbivore type
+     */
+    private void makeAllHerbivoresCalm() {
         currentState = AnimalState.CALM;
         Zoo.setAllHerbivoreState(AnimalState.CALM);
         printDescription();
@@ -49,10 +71,10 @@ public class Herbivore extends AnimalSpecies {
      */
     @Override
     public void night() {
-        if ( (Zoo.getAllCarnivoreState().equals(AnimalState.CALM) ||
-                Zoo.getAllCarnivoreState().equals(AnimalState.SLEEP) ) &&
+        if ((Zoo.getAllCarnivoreState().equals(AnimalState.CALM) ||
+                Zoo.getAllCarnivoreState().equals(AnimalState.SLEEP)) &&
                 (Zoo.getAllHerbivoreState().equals(AnimalState.SLEEP) ||
-                        Zoo.getAllHerbivoreState().equals(AnimalState.CALM)) ) {
+                        Zoo.getAllHerbivoreState().equals(AnimalState.CALM))) {
 
             System.out.println(name + " falling asleep");
             setCurrentState(AnimalState.SLEEP);
@@ -72,7 +94,7 @@ public class Herbivore extends AnimalSpecies {
      */
     @Override
     public void morning() {
-        if(Zoo.getAllHerbivoreState().equals(AnimalState.SLEEP) ||
+        if (Zoo.getAllHerbivoreState().equals(AnimalState.SLEEP) ||
                 Zoo.getAllHerbivoreState().equals(AnimalState.CALM)) {
             setCurrentState(AnimalState.CALM);
             Zoo.setAllHerbivoreState(AnimalState.CALM);
