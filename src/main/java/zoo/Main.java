@@ -4,7 +4,7 @@ public class Main {
 
     public static void main(String[] argv) {
 
-        String filePath = "src\\main\\resources\\zooAnimals.json";
+        String filePath = argv[0];
 
         // Create zoo
         Zoo zoo = new Zoo();
