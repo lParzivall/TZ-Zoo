@@ -53,11 +53,20 @@ public class ActionTrigger {
         System.out.println("\n--- Set morning ---");
         zoo.performAction(Events.MORNING);
     }
+
     /**
      * Method for invoking "thunder" event for all animals in the zoo
      */
     void setThunder() {
         System.out.println("\n--- Set thunder ---");
         zoo.performAction(Events.THUNDER);
+    }
+
+    /**
+     * Method for invoking "thunder" event for all animals in the zoo
+     */
+    void setRain() {
+        System.out.println("\n--- Set rain ---");
+        zoo.performAction(Events.RAIN);
     }
 }

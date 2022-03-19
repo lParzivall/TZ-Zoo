@@ -19,7 +19,8 @@ public class ActionTriggerTest {
 
         zoo = new Zoo();
         String filePath = ZooTest.class.getClassLoader().getResource("zooAnimals.json").getPath();
-        zoo.addAnimals(filePath);
+        String configFileType = "json";
+        zoo.addAnimals(filePath, configFileType);
         trigger = new ActionTrigger(zoo);
     }
 

@@ -21,7 +21,8 @@ class ZooTest {
     static void setup() {
         zoo = new Zoo();
         String filePath = ZooTest.class.getClassLoader().getResource("zooAnimals.json").getPath();
-        zoo.addAnimals(filePath);
+        String configFileType = "json";
+        zoo.addAnimals(filePath, configFileType);
     }
 
     @Test
@@ -51,7 +52,8 @@ class ZooTest {
 
         Zoo testZoo = new Zoo();
         String filePath = ZooTest.class.getClassLoader().getResource("zooAnimalsTest.json").getPath();
-        testZoo.addAnimals(filePath);
+        String configFileType = "json";
+        testZoo.addAnimals(filePath, configFileType);
 
         Assertions.assertEquals(testAnimals,testZoo.getZooAnimalSpecies());
     }
@@ -98,10 +100,6 @@ class ZooTest {
             zoo.performAction(Events.NIGHT);
             assertNotEquals(AnimalState.SLEEP, zoo.getAllCarnivoreState());
             assertNotEquals(AnimalState.SLEEP, zoo.getAllHerbivoreState());
-
-//            zoo.performAction(Events.MORNING);
-//            assertEquals(AnimalState.CALM, zoo.getAllCarnivoreState());
-//            assertEquals(AnimalState.CALM, zoo.getAllHerbivoreState());
 
             zoo.performAction(Events.THUNDER);
             assertEquals(AnimalState.MAKE_NOISE, zoo.getAllCarnivoreState());

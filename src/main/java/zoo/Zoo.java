@@ -1,6 +1,7 @@
 package zoo;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.dataformat.xml.XmlMapper;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -46,19 +47,36 @@ public class Zoo {
     /**
      * Method for adding animals to the zoo from the specified JSON file
      *
-     * @param jsonPath path to JSON file with animals info
+     * @param configFilePath path to config file with animals info
+     * @param configFileType type of config file
      */
-    public void addAnimals(String jsonPath) {
-        ObjectMapper mapper = new ObjectMapper();
-        File animalsFile = new File(jsonPath);
+    public void addAnimals(String configFilePath, String configFileType) {
+        ObjectMapper mapper = getMapper(configFileType);
+        File animalsFile = new File(configFilePath);
         try {
             AnimalsDataFile animalsData = mapper.readValue(animalsFile, AnimalsDataFile.class);
             zooAnimalSpecies.addAll(animalsData.getCarnivoreAnimals());
             zooAnimalSpecies.addAll(animalsData.getHerbivoreAnimals());
         } catch (IOException e) {
-            System.out.println(e.toString());
-            throw new IllegalStateException("File hasn't been parsed");
+            e.printStackTrace();
+            throw new IllegalStateException("File hasn't been parsed or it's not json or xml");
         }
+    }
+
+    /**
+     * Method for define mapper demand on type of config file.
+     *
+     * @param configFileType type of config file
+     * @return mapper
+     */
+    private ObjectMapper getMapper(String configFileType) {
+        switch (configFileType) {
+            case "json":
+                return new ObjectMapper();
+            case "xml":
+                return new XmlMapper();
+        }
+        return null;
     }
 
     /**
